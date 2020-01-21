@@ -34,6 +34,17 @@ class AirtableCRUD {
 			});
 		}
 	}
+
+	findbyID() {
+		return (req, res, next) => {
+	      table.find(req.params[this.queryKey], (err, record) => {
+	        if (err) { console.error(err); return; }
+	        console.log('Retrieved', record.get('UUID'));
+	        req[this.resultKey] = record;
+	        next();
+	      });
+    }
+	}
 }
 
 module.exports = AirtableCRUD;

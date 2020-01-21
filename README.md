@@ -22,3 +22,10 @@ TABLE_VIEW=
 5. The application will be running locally on whatever port you chose. You can test the api endpoints using `Postman` or by typing the request into the search bar. Note: a view has not been created yet for the browser so it will just be a `JSON` response displayed on the page.
 
 ## API endpoints:
+
+The following endpoints assume a table structure with columns: `UUID, title, body, active` active is a boolean/ checkbox. Each post also has an inherent id created when the record was created. That is what is used for lookup for the endpoint that returns posts by ID. UUID is for the users ID and is not yet implemented in the endpoints.
+
+Note: in the following examples the port is assumed `3000` but this will be whatever port you choose to set in the `.env` file.
+
+`http://localhost:3000/posts/` : a `GET` request to this endpoint returns posts that are active
+`http://localhost:3000/posts/:id` : a `GET` request to this endpoint returns a single post with the given ID after the `posts` parameter. You can find an ID for a given post by choosing an id associated with a given post when you make a call to `GET` `http://localhost:3000/posts/` endpoint.
