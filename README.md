@@ -51,7 +51,7 @@ Quite a bit more work would need to go into this before making it live. Namely s
 
 Here is how a flexible route would work:
 
-- use URL encoded query parameters that fit the structure and camel casing defined in `https://airtable.com/BASE_ID/api/docs#curl/table:posts:list`. (replace `BASE_ID` with your own base id).
+- use URL encoded query parameters that fit the structure and camel casing defined on: `https://airtable.com/BASE_ID/api/docs#curl/table:posts:list` (replace `BASE_ID` with your own base id).
 
 - add these query parameters after `http://localhost:3000/query/?` Example: `http://localhost:3000/query/?fields=uuid+titie+body`
 
