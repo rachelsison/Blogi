@@ -23,9 +23,15 @@ TABLE_VIEW=
 
 ## API endpoints:
 
-The following endpoints assume a table structure with columns: `UUID, title, body, active` active is a boolean/ checkbox. Each post also has an inherent id created when the record was created. That is what is used for lookup for the endpoint that returns posts by ID. UUID is for the users ID and is not yet implemented in the endpoints.
+The following endpoints assume a table structure with columns labeled: `UUID, title, body, active`
+- Active is a boolean/ checkbox
+- Each post also has an associated ID created when the record was created. This ID is what is used for lookup for the endpoint that returns posts by ID
+- UUID is for the users ID and is not yet implemented in the endpoints. If you don't have a UUID column it should still work fine.
+-The following examples the port is assumed `3000` but this will be whatever port you choose to set in the `.env` file.
 
-Note: in the following examples the port is assumed `3000` but this will be whatever port you choose to set in the `.env` file.
+##### To return posts that are active:
+issue a `GET` request to `http://localhost:3000/posts/` 
 
-`http://localhost:3000/posts/` : a `GET` request to this endpoint returns posts that are active
-`http://localhost:3000/posts/:id` : a `GET` request to this endpoint returns a single post with the given ID after the `posts` parameter. You can find an ID for a given post by choosing an id associated with a given post when you make a call to `GET` `http://localhost:3000/posts/` endpoint.
+##### To return a post by ID:
+issue a `GET` request to `http://localhost:3000/posts/:id`
+You can find an ID for a given post by choosing an ID associated with a given post when you make a call to `GET` `http://localhost:3000/posts/` endpoint.
