@@ -26,8 +26,8 @@ TABLE_VIEW=
 The following endpoints assume a table structure with columns labeled: `UUID, title, body, active`
 - Active is a boolean/ checkbox
 - Each post also has an associated ID created when the record was created. This ID is what is used for lookup for the endpoint that returns posts by ID
-- UUID is for the users ID and is not yet implemented in the endpoints. If you don't have a UUID column it should still work fine.
--The following examples the port is assumed `3000` but this will be whatever port you choose to set in the `.env` file.
+- UUID is for the users ID and is not yet implemented in the endpoints.
+- The following examples the port is assumed `3000` but this will be whatever port you choose to set in the `.env` file.
 
 ##### To return posts that are active:
 issue a `GET` request to `http://localhost:3000/posts/` 
@@ -35,3 +35,24 @@ issue a `GET` request to `http://localhost:3000/posts/`
 ##### To return a post by ID:
 issue a `GET` request to `http://localhost:3000/posts/:id`
 You can find an ID for a given post by choosing an ID associated with a given post when you make a call to `GET` `http://localhost:3000/posts/` endpoint.
+
+## Future endpoints:
+
+- Create new posts
+- Update Posts
+- Delete Posts
+- Flexible Route (more on flexible route below)
+
+##### Flexible Route
+
+A flexible route that allows developer to sort, filter by field, set max number of records to return, set page size filter by formulas etc. The benefit of putting this into the hands of the developer that would be consuming this data is that we wouldn't have to create a separate endpoint for every single use case right off the bat. Of course routes that are continuously being used would get their own endpoint for ease of use but having this flexibility for one-off cases is valuable.
+
+Quite a bit more work would need to go into this before making it live. Namely sanitizing the request data, making sure the requests have valid formatting (although currently if its malformed Airtable will actually just throw an error and continue running as usual), and of course testing.
+
+Here is how a flexible route would work:
+
+- use URL encoded query parameters that fit the structure and camel casing defined in `https://airtable.com/BASE_ID/api/docs#curl/table:posts:list`. (replace `BASE_ID` with your own base id).
+
+- add these query parameters after `http://localhost:3000/query/?` Example: `http://localhost:3000/query/?fields=uuid+titie+body`
+
+- Special cases to adapt data structures to URL: for filtering by fields separate field values with a `+` sign. This will be handled in the api to be made into the proper structure.
